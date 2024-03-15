@@ -33,4 +33,38 @@ public class ClassroomTest {
         // Then
         Assert.assertEquals(expectedAverageExamScore, actualAverageExamScore);
     }
+
+    @Test
+    public void addStudentToClassroomTest(){
+        // : Given
+        int maxNumberOfStudents = 1;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
+        Student student = new Student("Leon", "Hunter", examScores);
+
+        // When
+
+
+        int expectedNumberOfStudents = classroom.getStudents().length + 1;
+        classroom.addStudent(student);
+        int actualNumberOfStudents = classroom.getStudents().length;
+
+        Assert.assertEquals(expectedNumberOfStudents, actualNumberOfStudents);
+    }
+
+    @Test
+    public void removeStudentTest() {
+        int maxNumberOfStudents = 1;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
+        Student student = new Student("Leon", "Hunter", examScores);
+        classroom.addStudent(student);
+
+        int expectedNumberOfStudents = classroom.getStudents().length - 1;
+        classroom.removeStudent("Leon", "Hunter");
+        int actualNumberOfStudents = classroom.getStudents().length;
+
+        Assert.assertEquals(expectedNumberOfStudents, actualNumberOfStudents);
+    }
+
 }
