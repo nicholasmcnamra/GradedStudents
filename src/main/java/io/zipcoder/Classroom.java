@@ -57,4 +57,16 @@ public class Classroom {
             }
         }
     }
+
+    public Student[] getStudentsByScoreAverage(Student[] students) {
+        Student [] studentsByAverage = new Student[students.length];
+        for (int i = 0; i < students.length; i++) {
+            for(int j = 0; j < i; j++) {
+                if(students[i].getAverageExamScore() < students[j].getAverageExamScore()) {
+                    studentsByAverage[i] = students[i];
+                }
+            }
+        }
+        return studentsByAverage;
+    }
 }

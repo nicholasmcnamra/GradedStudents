@@ -2,11 +2,13 @@ package io.zipcoder;
 import org.junit.Test;
 import org.junit.Assert;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 public class ClassroomTest {
 
+    Student[] students = new Student[0];
     @Test
     public void getAverageExamScoreTest() {
         // : Given
@@ -67,4 +69,22 @@ public class ClassroomTest {
         Assert.assertEquals(expectedNumberOfStudents, actualNumberOfStudents);
     }
 
+    @Test
+    public void getStudentsByScoreAverageTest() {
+        int maxNumberOfStudents = 1;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores1 = { 100.0, 150.0, 250.0, 0.0 };
+        Double[] examScores2 = { 95.0, 300.0, 90.0, 100.0 };
+        Student student1 = new Student("Leon", "Hunter", examScores1);
+        Student student2 = new Student("May", "Dobbs", examScores2);
+        Student[] students = {student1, student2};
+        classroom.addStudent(student1);
+        classroom.addStudent(student2);
+
+        Student[] expectedStudents = {student2, student1};
+        Student[] actualStudents = classroom.getStudentsByScoreAverage(students);
+
+        Assert.assertEquals(expectedStudents, actualStudents);
+
+    }
 }
